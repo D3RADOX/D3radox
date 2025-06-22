@@ -7,7 +7,7 @@ const thankyou = document.getElementById('thankyou');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Countdown
+// Countdown logic
 let countdown = 3;
 orb.textContent = countdown;
 orb.style.opacity = 1;
@@ -23,7 +23,7 @@ let orbTimer = setInterval(() => {
   }
 }, 1000);
 
-// Particle FX
+// Explosion particle effect
 function triggerExplosion() {
   const particles = [];
   for (let i = 0; i < 100; i++) {
@@ -52,24 +52,39 @@ function triggerExplosion() {
     frames++;
     if (frames > 60) {
       clearInterval(interval);
-      dropLetters();
+      dropLines();
     }
   }, 16);
 }
 
-// Quote Fall In
-function dropLetters() {
-  const text = "If they dressed in suits like bad guys in Die Hard and no name tags, it's prolly a drug club";
+// Line-by-line animation
+function dropLines() {
+  const lines = [
+    "If they dressed in suits",
+    "like bad guys in Die Hard",
+    "and no name tags,",
+    "it's prolly a drug club."
+  ];
+
   messageEl.innerHTML = '';
-  const chars = text.split('');
-  chars.forEach((char, i) => {
-    const span = document.createElement('span');
-    span.textContent = char;
-    span.style.animationDelay = `${i * 30}ms`;
-    messageEl.appendChild(span);
+
+  lines.forEach((line, i) => {
+    const lineEl = document.createElement('div');
+    lineEl.textContent = line;
+    lineEl.style.opacity = '0';
+    lineEl.style.position = 'relative';
+    lineEl.style.top = '-100px';
+    lineEl.style.transition = `all 0.8s ease-out ${i * 0.5}s`;
+    messageEl.appendChild(lineEl);
+
+    // Trigger drop-in after delay
+    setTimeout(() => {
+      lineEl.style.top = '0px';
+      lineEl.style.opacity = '1';
+    }, i * 500);
   });
 
-  // Fade out message and show Thank You
+  // Final fade + thank you flash
   setTimeout(() => {
     messageEl.style.transition = 'opacity 1s ease-in-out';
     messageEl.style.opacity = 0;
@@ -77,7 +92,7 @@ function dropLetters() {
   }, 10000);
 }
 
-// White flash + thank you burn
+// Flash and thank you
 function flashThenThank() {
   document.body.style.backgroundColor = 'white';
   setTimeout(() => {
