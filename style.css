@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-body, html {
+html, body {
   margin: 0;
   padding: 0;
-  background: #000;
+  height: 100%;
+  background: black;
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
   font-family: 'Share Tech Mono', monospace;
-  color: white;
 }
 
 .scene {
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: black;
 }
 
-canvas#explosionCanvas {
+/* Canvas Explosion Layer */
+#explosionCanvas {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
@@ -25,6 +25,7 @@ canvas#explosionCanvas {
   z-index: 1;
 }
 
+/* Red Orb */
 .orb {
   position: absolute;
   top: 50%;
@@ -49,29 +50,34 @@ canvas#explosionCanvas {
   100% { transform: translate(-50%, -50%); opacity: 1; }
 }
 
-.message {
+/* Quote Message */
+.message-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
   z-index: 3;
-  font-size: 1.6rem;
+}
+
+.message {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  pointer-events: none;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: white;
 }
 
 .message span {
+  display: inline-block;
   opacity: 0;
   position: relative;
   top: -100vh;
-  display: inline-block;
-  margin: 0 2px;
-  animation: fallIn 1s forwards;
+  margin: 2px;
+  animation: fallIn 0.8s forwards ease-out;
 }
 
 @keyframes fallIn {
@@ -81,6 +87,7 @@ canvas#explosionCanvas {
   }
 }
 
+/* Thank You Burn In */
 .thankyou {
   position: absolute;
   top: 50%;
@@ -88,8 +95,19 @@ canvas#explosionCanvas {
   transform: translate(-50%, -50%);
   font-size: 3rem;
   color: lime;
+  text-shadow: 0 0 10px lime;
   opacity: 0;
   z-index: 4;
-  text-shadow: 0 0 10px lime;
   transition: opacity 1.5s ease-in;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .message {
+    font-size: 1.2rem;
+  }
+
+  .thankyou {
+    font-size: 2rem;
+  }
 }
