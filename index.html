@@ -3,24 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>No Name Tags</title>
+  <title>Red Ball Message</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="scene">
-    <div class="glow"></div>
-    <video autoplay muted loop id="bgVideo">
-      <source src="https://cdn.coverr.co/videos/coverr-office-hallway-7383/1080p.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">
-      <div class="caption-container">
-        <h1 class="glitch-text">
-          <span class="line1">No Name Tags</span>
-          <span class="line2">means</span>
-          <span class="line3">No Accountability</span>
-        </h1>
-      </div>
-    </div>
+    <canvas id="explosionCanvas"></canvas>
+    <div class="orb" id="orb">3</div>
+    <div class="message" id="message"></div>
+    <div class="thankyou" id="thankyou">THANK YOU</div>
   </div>
   <script src="script.js"></script>
 </body>
