@@ -1,0 +1,79 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  background: #0d0d0d;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container */
+.container {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Background Glitch Effect */
+.glitch-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    #0d0d0d,
+    #0d0d0d 2px,
+    #111 2px,
+    #111 4px
+  );
+  animation: glitchBackground 1s infinite;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+@keyframes glitchBackground {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 8px; }
+}
+
+/* Text Animation */
+.animated-text {
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: typeIn 3s steps(30, end);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+}
+
+.animated-text span {
+  color: #f44336;
+}
+
+/* Typewriter Effect */
+@keyframes typeIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .animated-text {
+    font-size: 2rem;
+  }
+}
