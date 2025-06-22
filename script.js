@@ -7,7 +7,11 @@ const thankyou = document.getElementById('thankyou');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Countdown
 let countdown = 3;
+orb.textContent = countdown;
+orb.style.opacity = 1;
+
 let orbTimer = setInterval(() => {
   countdown--;
   if (countdown > 0) {
@@ -19,6 +23,7 @@ let orbTimer = setInterval(() => {
   }
 }, 1000);
 
+// Particle FX
 function triggerExplosion() {
   const particles = [];
   for (let i = 0; i < 100; i++) {
@@ -52,6 +57,7 @@ function triggerExplosion() {
   }, 16);
 }
 
+// Quote Fall In
 function dropLetters() {
   const text = "If they dressed in suits like bad guys in Die Hard and no name tags, it's prolly a drug club";
   messageEl.innerHTML = '';
@@ -63,12 +69,15 @@ function dropLetters() {
     messageEl.appendChild(span);
   });
 
+  // Fade out message and show Thank You
   setTimeout(() => {
+    messageEl.style.transition = 'opacity 1s ease-in-out';
     messageEl.style.opacity = 0;
     flashThenThank();
-  }, 9000);
+  }, 10000);
 }
 
+// White flash + thank you burn
 function flashThenThank() {
   document.body.style.backgroundColor = 'white';
   setTimeout(() => {
